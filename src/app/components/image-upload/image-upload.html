@@ -1,0 +1,39 @@
+<div (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+    [class.border-blue-500]="isDragging()"
+    class="flex flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-gray-300 px-6 py-10 text-center transition-colors duration-200">
+
+    <!-- Use the new @if block instead of *ngIf -->
+    @if (!previewUrl()) {
+    <!-- View 1: Show this when no image is selected -->
+    <svg class="text-gray-400" fill="none" height="48" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+        width="48" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.338 0 4.5 4.5 0 01-1.41 8.775H6.75z"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <p class="text-gray-500 text-sm">
+        <label for="file-upload" class="font-semibold text-blue-600 cursor-pointer hover:underline">
+            Click to upload
+        </label>
+        or drag and drop
+    </p>
+    <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+
+    <input id="file-upload" class="sr-only" type="file" (change)="onFileSelected($event)"
+        accept="image/png, image/jpeg, image/gif, image/svg+xml" />
+    } @else {
+    <!-- View 2: Show this when an image has been selected -->
+    <div class="relative w-full max-w-xs">
+        <img [src]="previewUrl()" alt="Selected image preview" class="rounded-lg object-contain max-h-48 w-full" />
+
+        <button (click)="removeImage()"
+            class="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 leading-none hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <p class="text-xs text-gray-600 mt-2 truncate max-w-full">{{ selectedFileName() }}</p>
+    }
+</div>

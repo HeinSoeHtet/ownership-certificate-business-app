@@ -1,0 +1,10 @@
+@use "@angular/material" as mat;
+
+.input-container {
+  @include mat.form-field-overrides(
+    (
+      outlined-focus-outline-color: none,
+      outlined-caret-color: none,
+    )
+  );
+}
