@@ -26,6 +26,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'issued-certificates/:id',
+    loadComponent: () =>
+      import('./pages/certificate-details/certificate-details').then(
+        (m) => m.CertificateDetails
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
   },

@@ -3,52 +3,43 @@
         <app-navbar />
         <main class="px-6 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-8">
             <div class="layout-content-container flex flex-col w-full max-w-5xl gap-8">
-                <h1 class="text-[var(--text-primary)] text-3xl font-bold leading-tight">Welcome, Acme Corp!</h1>
+                <h1 class="text-[var(--text-primary)] text-3xl font-bold leading-tight">Welcome, {{
+                    businessInfo()?.businessName?.toUpperCase() }} Business!</h1>
                 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div
                         class="flex flex-col gap-2 rounded-xl p-6 border border-[var(--secondary-color)] bg-white shadow-sm">
                         <div class="flex items-center justify-between">
                             <p class="text-[var(--text-primary)] text-base font-medium">Daily Mint Limit</p>
-                            <span class="material-icons-outlined text-[var(--primary-color)]">verified_user</span>
+                            <mat-icon class="!text-[var(--primary-color)]">verified_user</mat-icon>
                         </div>
-                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">100</p>
+                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">
+                            {{businessInfo()?.dailyMintLimit}}</p>
                     </div>
                     <div
                         class="flex flex-col gap-3 rounded-xl p-6 border border-[var(--secondary-color)] bg-white shadow-sm">
                         <div class="flex items-center justify-between">
                             <p class="text-[var(--text-primary)] text-base font-medium">Daily Mints Remaining</p>
-                            <span class="material-icons-outlined text-[var(--primary-color)]">hourglass_empty</span>
+                            <mat-icon class="!text-[var(--primary-color)]">hourglass_empty</mat-icon>
                         </div>
-                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">75</p>
-                        <div class="progress-bar-container mt-1">
-                            <div class="progress-bar" style="width: 75%;"></div>
-                        </div>
-                        <p class="text-[var(--text-secondary)] text-sm font-medium">75% of daily limit</p>
+                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">
+                            {{businessInfo()?.remainingLimit}}</p>
+                        <mat-progress-bar mode="determinate"
+                            [value]="businessInfo()?.remainingLimit"></mat-progress-bar>
+                        <p class="text-[var(--text-secondary)] text-sm font-medium">{{ businessInfo()?.remainingLimit
+                            }}% of daily limit</p>
                     </div>
                     <div
                         class="flex flex-col gap-2 rounded-xl p-6 border border-[var(--secondary-color)] bg-white shadow-sm">
                         <div class="flex items-center justify-between">
                             <p class="text-[var(--text-primary)] text-base font-medium">Total Certificates Issued</p>
-                            <span class="material-icons-outlined text-[var(--primary-color)]">inventory_2</span>
+                            <mat-icon class="!text-[var(--primary-color)]">inventory_2</mat-icon>
+
                         </div>
-                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">500</p>
+                        <p class="text-[var(--text-primary)] text-4xl font-bold leading-tight">{{
+                            businessInfo()?.totalMinted}}</p>
                     </div>
                 </section>
-                <section class="pt-4">
-                    <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Quick Actions</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <button
-                            class="flex items-center justify-center gap-2 rounded-lg h-16 px-6 bg-[var(--primary-color)] text-white text-lg font-semibold hover:bg-opacity-90 transition-colors shadow-md">
-                            <span class="material-icons-outlined">add_circle_outline</span>
-                            <span class="truncate">Mint a New Certificate</span>
-                        </button>
-                        <button
-                            class="flex items-center justify-center gap-2 rounded-lg h-16 px-6 bg-[var(--secondary-color)] text-[var(--text-primary)] text-lg font-semibold hover:bg-gray-200 transition-colors shadow-md">
-                            <span class="material-icons-outlined">fact_check</span>
-                            <span class="truncate">Mint a Batch</span>
-                        </button>
-                    </div>
-                </section>
+
             </div>
         </main>
     </div>

@@ -9,17 +9,24 @@
             </svg>
         </div>
         <h2 class="text-[var(--text-primary)] text-xl font-bold leading-tight tracking-[-0.015em]">
-            AuthentiCheck
+            AuthentiCheck Business
         </h2>
     </div>
     <nav class="hidden md:flex items-center gap-6">
         <a class="text-text-primary hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-            href="/dashboard">Dashboard</a>
+            routerLink="/dashboard" [routerLinkActive]="'text-[var(--primary-color)]'">Dashboard</a>
         <a class="text-text-primary hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-            href="/new-certificate">New Certificate</a>
+            routerLink="/new-certificate" [routerLinkActive]="'text-[var(--primary-color)]'">New Certificate</a>
         <a class="text-text-primary hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-            href="/issued-certificates">All Issued Certificates</a>
+            routerLink="/issued-certificates" [routerLinkActive]="'text-[var(--primary-color)]'">All Issued
+            Certificates</a>
 
     </nav>
-    <button matButton="filled">Connect Wallet</button>
+    @if(isConnected()) {
+    <button matButton="filled">
+        <mat-icon>check</mat-icon>
+        Connected</button>
+    } @else {
+    <button matButton="filled" (click)="connectWallet()">Connect Wallet</button>
+    }
 </header>

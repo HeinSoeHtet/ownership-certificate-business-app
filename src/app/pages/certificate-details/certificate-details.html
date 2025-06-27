@@ -1,0 +1,124 @@
+<div class="relative flex size-full min-h-screen flex-col  overflow-x-hidden bg-gray-50">
+    <div class="layout-container flex h-full grow flex-col">
+        <app-navbar>
+
+        </app-navbar>
+        <main class="px-6 sm:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-8 bg-slate-50">
+            <div class="layout-content-container flex flex-col w-full max-w-4xl">
+                <div
+                    class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[var(--border-color)] mb-6">
+                    <h1 class="text-[var(--text-primary)] text-3xl font-bold tracking-tight">Certificate Details</h1>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium text-[var(--text-secondary)]">Authenticity:</span>
+                        <span
+                            class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
+                            <span class="material-icons text-sm">verified</span>
+                            Authentic
+                        </span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <div class="lg:col-span-2 bg-white shadow-sm rounded-lg border border-[var(--border-color)]">
+                        <div class="px-6 py-5 border-b border-[var(--border-color)]">
+                            <h3 class="text-[var(--text-primary)] text-lg font-semibold leading-tight">Product
+                                Information</h3>
+                        </div>
+                        <div class="p-6">
+                            <dl class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Product Name</dt>
+                                <dd class="text-sm text-[var(--text-primary)] md:col-span-2">{{ productDetails()?.name}}
+                                </dd>
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Description</dt>
+                                <dd class="text-sm text-[var(--text-primary)] md:col-span-2">{{
+                                    productDetails()?.description}}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1">
+                        <div class="bg-white shadow-sm rounded-lg border border-[var(--border-color)] overflow-hidden">
+                            <div class="px-6 py-5 border-b border-[var(--border-color)]">
+                                <h3 class="text-[var(--text-primary)] text-lg font-semibold leading-tight">Product Image
+                                </h3>
+                            </div>
+                            <div class="p-6">
+                                <img class="w-full h-auto object-cover rounded-md" [src]="productDetails()?.image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white shadow-sm rounded-lg border border-[var(--border-color)]">
+                    <div class="px-6 py-5 border-b border-[var(--border-color)]">
+                        <h3 class="text-[var(--text-primary)] text-lg font-semibold leading-tight">Certificate
+                            Information</h3>
+                    </div>
+                    <dl class="divide-y divide-[var(--border-color)]">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Certificate ID</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2">{{
+                                certificateDetails()?.tokenId}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Current Owner</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2">{{
+                                certificateDetails()?.owner}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">IPFS Hash</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2 break-all">
+                                {{ certificateDetails()?.ipfsHash}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Metadata URI</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2 break-all">
+                                {{ certificateDetails()?.metadataUri}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Original Minter</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2">{{
+                                certificateDetails()?.originalMinter}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Mint Timestamp</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2">
+                                {{formatDate(certificateDetails()?.mintTimestamp || 0)}}</dd>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-6 py-4 hover:bg-gray-50 transition-colors">
+                            <dt class="text-sm font-medium text-[var(--text-secondary)]">Business Name</dt>
+                            <dd class="text-sm text-[var(--text-primary)] md:col-span-2">
+                                {{certificateDetails()?.businessName}}</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="mt-8 bg-white shadow-sm rounded-lg border border-[var(--border-color)]">
+                    <div class="px-6 py-5 border-b border-[var(--border-color)]">
+                        <h3 class="text-[var(--text-primary)] text-lg font-semibold leading-tight">Ownership History
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider"
+                                        scope="col">Owner</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider"
+                                        scope="col">Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-[var(--border-color)]">
+                                @for (history of certificateDetails()?.history; track history.timestamp) {
+                                <tr>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">
+                                        {{ history.owner }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
+                                        {{ formatDate(history.timestamp) }}</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
